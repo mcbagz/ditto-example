@@ -11,7 +11,9 @@ As you can see from the code, Ditto executed the task quite well! I only had to 
 
 ## Adjustments
 The code, as written by Ditto, threw a few errors. Specifically, the SQLite tables were not initialized, so I added the following lines to message.py and user.py, respectively:
+
 ```c.execute("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, user_id INT, content TEXT, timestamp INT)")```
+
 ```c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT)")```
 
 Further, messages were being sorted by "timestamp", which was not included when a new message was being stored, so I added `int(time.time())` and the relevant other code (like `import time`) to message.py
