@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Global Feed</title>
+</head>
+<body>
+    <h1>Global Feed</h1>
+    <form action="/message" method="POST">
+        <input type="text" name="username" placeholder="Your username" required>
+        <textarea name="content" placeholder="What's on your mind?" required></textarea>
+        <button type="submit">Post Message</button>
+    </form>
+    <div>
+        {% for message in messages %}
+            <p><strong>{{ message[1] }}:</strong> {{ message[0] }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
