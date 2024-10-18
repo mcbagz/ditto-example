@@ -7,7 +7,7 @@ I spent a few hours trying to get Ditto to run with a locally hosted LLM via Oll
 I gave Ditto a pretty simple task: 
 >Build a website where users can create profiles with usernames and post messages to a global feed that anyone can read, and store all the data in a sqlite database
 
-As you can see from the code, Ditto executed the task quite well! I only had to make a few adjustment:
+To see how Ditto worked, you can view the [full logs of the run here](flask_app_builder_log.json). As you can see from the code, Ditto executed the task quite well! I only had to make a few adjustment:
 
 ## Adjustments
 The code, as written by Ditto, threw a few errors. Specifically, the SQLite tables were not initialized, so I added the following lines to message.py and user.py, respectively:
@@ -16,7 +16,7 @@ The code, as written by Ditto, threw a few errors. Specifically, the SQLite tabl
 
 ```c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT)")```
 
-Further, messages were being sorted by "timestamp", which was not included when a new message was being stored, so I added `int(time.time())` and the relevant other code (like `import time`) to message.py
+Further, messages were being sorted by "timestamp", which was not included when a new message was being stored, so I added `int(time.time())` and the relevant other code (like `import time`) to message.py.
 
 ## Other Improvements
 Ditto executed the task to the letter of what was written, but these are some additional improvements that would make sense for such an app:
